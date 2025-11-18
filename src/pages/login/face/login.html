@@ -15,3 +15,36 @@
 <input id="log-user" placeholder="Usuário">
 <input id="log-pass" type="password" placeholder="Senha">
 <button onclick="logar()">Entrar</button>
+
+<script>
+async function cadastrar() {
+  const usuario = document.getElementById("cad-user").value;
+  const senha = document.getElementById("cad-pass").value;
+
+  const req = await fetch("/cadastro", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ usuario, senha })
+  });
+
+  const res = await req.json();
+  alert(res.msg || res.erro);
+}
+
+async function logar() {
+  const usuario = document.getElementById("log-user").value;
+  const senha = document.getElementById("log-pass").value;
+
+  const req = await fetch("/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ usuario, senha })
+  });
+
+  const res = await req.json();
+  alert(res.msg || res.erro);
+}
+</script>
+
+</body>
+</html>
